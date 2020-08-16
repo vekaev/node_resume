@@ -5,8 +5,6 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 
-// fs.readFile()
-
 const server = http.createServer((req, res) => {
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
     let contentType = "text/html";
@@ -45,7 +43,4 @@ const server = http.createServer((req, res) => {
             res.end(data);
         };
     });
-});
-
-
-server.listen(PORT);
+}).listen(PORT);
