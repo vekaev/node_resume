@@ -10,6 +10,28 @@ const server = http.createServer((req, res) => {
     const { method, url, headers} = req;
     const reqUrl = urlModule.parse(url, true);
 
+    
+    const Router = {
+        get: (url, callback) => {}
+    
+    const router = new Router();
+    
+    router.get(
+        '/' ,
+        (req, res, next) => {
+            console.log(1);
+            next();
+        },
+        (req, res, next) => {
+            console.log(2);
+            next();
+        },
+        (req, res) => {
+            res.end();
+        },
+    );
+    
+    
     switch (method) {
         case 'GET':
             console.log(headers['content-type']);
