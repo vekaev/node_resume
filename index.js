@@ -1,9 +1,26 @@
 const http = require('http'),
-    fs = require('fs'),
-    path = require('path'),
-    urlModule = require('url');
+        fs = require('fs'),
+        path = require('path'),
+        urlModule = require('url');
 
 const PORT = process.env.PORT || 3000;
+
+
+class Router {
+    listen(port, callback) {
+        const handler = (req, res, err) => {
+            if (err) {
+                res.writeHead(500);
+                res.end('Internal Server Error');
+            }
+        };
+        return http.createServer(handler).listen({port}, callback)
+    }
+    // constructor() {}
+    get(url, ...callback) {
+
+    }
+}
 
 
 const server = http.createServer((req, res) => {
@@ -11,25 +28,27 @@ const server = http.createServer((req, res) => {
     const reqUrl = urlModule.parse(url, true);
 
     
-    const Router = {
-        get: (url, callback) => {}
-    
-    const router = new Router();
-    
-    router.get(
-        '/' ,
-        (req, res, next) => {
-            console.log(1);
-            next();
-        },
-        (req, res, next) => {
-            console.log(2);
-            next();
-        },
-        (req, res) => {
-            res.end();
-        },
-    );
+    const router = new Router;
+    // router.get(1, 2,2,4,5)
+    router.listen('6000',
+        (res, req) => {
+      console.log('hello')
+    })
+
+    // router.get(
+    //     '/' ,
+    //     (req, res, next) => {
+    //         console.log(1);
+    //         next();
+    //     },
+    //     (req, res, next) => {
+    //         console.log(2);
+    //         next();
+    //     },
+    //     (req, res) => {
+    //         res.end();
+    //     },
+    // );
     
     
     switch (method) {
@@ -85,4 +104,5 @@ const server = http.createServer((req, res) => {
         }
         ;
     });
-}).listen(PORT);
+})
+server.listen(PORT);
